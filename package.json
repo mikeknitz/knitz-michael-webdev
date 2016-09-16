@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Web Dev at Northeastern University",
   "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mikeknitz/knitz-michael-webdev.git"
+  },
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
