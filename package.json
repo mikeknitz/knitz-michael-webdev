@@ -1,20 +1,18 @@
 {
-	"name": "knitz-michael-webdev",
-	"version": "1.0.0",
-	"description": "cs5610 assignments and project",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node index.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/mikeknitz/knitz-michael-webdev.git"
-	},
-	"author": "Michael Knitz",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/mikeknitz/knitz-michael-webdev/issues"
-	},
-	"homepage": "https://github.com/mikeknitz/knitz-michael-webdev#readme"
+  "name": "web-dev",
+  "version": "1.0.0",
+  "description": "Web Dev at Northeastern University",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Michael Knitz",
+  "license": "ISC"
 }
