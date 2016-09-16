@@ -17,7 +17,7 @@ module.exports = function(app)
     */
 
     if(process.env.MONGODB_URI) {
-        connectionString = ' mongodb://mikeknitz:password@ds033086.mlab.com:33086/heroku_07wchjtv'
+        connectionString = 'mongodb://mikeknitz:password@ds033086.mlab.com:33086/heroku_07wchjtv'
     }
 
     var mongoose = require("mongoose");
