@@ -4,20 +4,10 @@ module.exports = function(app)
     app.post("/api/test", createMessage);
     app.delete("/api/test/:id", deleteMessage);
 
-    var connectionString = 'mongodb://127.0.0.1:27017/test';
-
-    /*
-    if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
-        connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
-            process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
-            process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
-            process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
-            process.env.OPENSHIFT_APP_NAME;
-    }
-    */
-
     if(process.env.MONGODB_URI) {
-        connectionString = 'mongodb://mikeknitz:password@ds033086.mlab.com:33086/heroku_07wchjtv'
+        var connectionString = process.env.MONGODB_URI;
+    } else {
+        var connectionString = 'mongodb://127.0.0.1:27017/test';
     }
 
     var mongoose = require("mongoose");
