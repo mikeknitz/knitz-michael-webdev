@@ -1,7 +1,15 @@
+body {
+    padding-top: 36px;
+}
+
 input.form-control {
     margin-bottom: 5px;
 }
 
-body {
-    padding-top: 36px;
+.navbar {
+    background-color: #2b7fc5;
+}
+
+.navbar a {
+    color: white!important;
 }
