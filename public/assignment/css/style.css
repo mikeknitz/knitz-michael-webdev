@@ -1,15 +1,11 @@
-body {
-    padding-top: 36px;
-}
+body { padding-top: 51px; }
+input.form-control { margin-bottom: 5px; }
 
-input.form-control {
-    margin-bottom: 5px;
-}
+/* Customizing the navbar */
+.navbar { background-color: #2b7fc5; }
+.navbar a { color: white!important; }
 
-.navbar {
-    background-color: #2b7fc5;
-}
-
-.navbar a {
-    color: white!important;
-}
+/* Margin for links */
+/* Immediate child divs should be rows */
+.link-margin { margin: 15px; }
+.link-margin > div { margin: 10px auto 10px auto; }
