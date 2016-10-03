@@ -7,3 +7,96 @@
   <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
+
+<div class="hidden-xs">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row">
+
+      <div class="col-xs-4 container-fluid">
+        <div class="navbar-brand">
+          <a href="website-list.html" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a>
+          <a class="navbar-link" href="website-list.html">Websites</a>
+        </div>
+        <p class="navbar-text pull-right">
+          <a class="navbar-link" href="website-new.html"><span class="glyphicon glyphicon-plus"></span></a>
+        </p>
+      </div>
+
+      <div class="col-xs-8 container-fluid">
+        <div class="navbar-brand">
+          <a class="navbar-link" href="#">Edit Website</a>
+        </div>
+        <p class="navbar-text pull-right">
+          <a class="navbar-link" href="website-list.html"><span class="glyphicon glyphicon-ok"></span></a>
+        </p>
+      </div>
+
+    </div>
+  </nav>
+</div>
+
+<div class="visible-xs">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <a href="website-list.html" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="navbar-link" href="website-list.html">Edit Website</a>
+      </div>
+      <p class="navbar-text pull-right">
+        <a class="navbar-link" href="website-list.html"><span class="glyphicon glyphicon-ok"></span></a>
+      </p>
+    </div>
+  </nav>
+</div>
+
+
+<div class="container-fluid">
+  <div class="hidden-xs vert_line"></div>
+
+  <div class="row">
+    <div class="hidden-xs col-xs-4">
+      <div class="container-fluid padding">
+        <div class="padding-vert">
+          <a href="../page_pages/page-list.html">Address Book App</a>
+          <a class="pull-right" href="website-edit.html"><span class="glyphicon glyphicon-cog"></span></a><br>
+        </div>
+        <div class="padding-vert">
+          <a href="../page_pages/page-list.html">Blogger</a>
+          <a class="pull-right" href="website-edit.html"><span class="glyphicon glyphicon-cog"></span></a><br>
+        </div>
+        <div class="padding-vert">
+          <a href="../page_pages/page-list.html">Blogging App</a>
+          <a class="pull-right" href="website-edit.html"><span class="glyphicon glyphicon-cog"></span></a><br>
+        </div>
+        <div class="padding-vert">
+          <a href="../page_pages/page-list.html">Script Testing App</a>
+          <a class="pull-right" href="website-edit.html"><span class="glyphicon glyphicon-cog"></span></a><br>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-8 padding">
+      <div class="form-group">
+        <label for="website_name">Website Name</label>
+        <input type="text" class="form-control" id="website_name" placeholder="Name">
+      </div>
+      <div class="form-group">
+        <label for="website_description">Website Description</label>
+        <textarea class="form-control" id="website_description" placeholder="Description" rows="5"></textarea>
+      </div>
+      <a href="website-list.html" class="btn btn-danger btn-block">Delete</a>
+    </div>
+
+  </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-text pull-right">
+      <a href="../user_pages/profile.html"><span class="glyphicon glyphicon-user"></span></a>
+    </div>
+  </div>
+</nav>
+
+</body>
+</html>
