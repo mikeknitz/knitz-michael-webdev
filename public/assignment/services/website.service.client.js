@@ -50,8 +50,8 @@
                 if (website.developerId == userId) {
                     user_websites.push(website);
                 }
-                return user_websites;
             }
+            return user_websites;
         }
 
         function findWebsiteById(websiteId) {
