@@ -1,5 +1,5 @@
-"use strict";
 (function () {
+    "use strict";
     angular
         .module("WebAppMaker")
         // $routeprovider from ngRoute module
@@ -9,7 +9,9 @@
 
                 // User pages
                 .when("/", {
-                    templateUrl: "views/user/login.view.client.html"
+                    templateUrl: "views/user/login.view.client.html",
+                    controller: "LoginController",
+                    controllerAs: "model"
                 })
                 .when("/login", {
                     templateUrl: "views/user/login.view.client.html"
