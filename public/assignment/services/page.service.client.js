@@ -47,8 +47,8 @@
                 if (page.websiteId == websiteId) {
                     website_pages.push(page);
                 }
-                return website_pages;
             }
+            return website_pages;
         }
 
         function findPageById(pageId) {
@@ -66,14 +66,17 @@
             // Merge argument page into database page
             // Return updated website
 
+            var pageFound = false;
             for (var p in pages) {
                 var page_old = pages[p];
                 if (page_old._id == pageId) {
                     $.extend(true, pages[p], page);
+                    pageFound = true;
                     return pages[p];
-                } else {
-                    console.log("PageService.updatePage failed");
                 }
+            }
+            if (! pageFound) {
+                console.log("PageService.updatePage failed")
             }
         }
 
@@ -81,14 +84,17 @@
             // Delete page from database whose page._id matches argument pageId
             // Return true if successful
 
+            var pageFound = false;
             for (var p in pages) {
                 var page = pages[p];
                 if (page._id == pageId) {
                     pages.splice(p, 1);
+                    pageFound = true;
                     return true;
-                } else {
-                    console.log("PageService.deletePage failed");
                 }
+            }
+            if (! pageFound) {
+                console.log("PageService.deletePage failed");
             }
         }
 

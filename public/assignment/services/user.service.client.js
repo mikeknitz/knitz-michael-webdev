@@ -105,14 +105,17 @@
             // Delete users.user with matching userId
             // Return true if successful
 
+            var userFound = false;
             for (var u in users) {
                 var user = users[u];
                 if (user._id == userId) {
                     users.splice(u, 1);
+                    userFound = true;
                     return true;
-                } else {
-                    console.log("UserService.deleteUser failed")
                 }
+            }
+            if (! userFound) {
+                console.log("UserService.deleteUser failed");
             }
         }
 
