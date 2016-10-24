@@ -69,14 +69,17 @@
         function updateWidget(widgetId, widget) {
             // Merge argument widget into database widget
 
+            var widgetFound = false;
             for (var w in widgets) {
                 var widget_old = widgets[w];
                 if (widget_old._id == widgetId) {
+                    widgetFound = true;
                     $.extend(true, widgets[w], widget);
                     return widgets[w];
-                } else {
-                    console.log("WidgetService.updateWidget failed")
                 }
+            }
+            if (! widgetFound) {
+                console.log("WidgetService.updateWidget failed");
             }
         }
 
@@ -84,14 +87,17 @@
             // Delete widget from database whose widget._id matches argument widgetId
             // Return true if successful
 
+            var widgetFound = false;
             for (var w in widgets) {
                 var widget = widgets[w];
                 if (widget._id == widgetId) {
+                    widgetFound = true;
                     widgets.splice(w, 1);
                     return true;
-                } else {
-                    console.log("WidgetService.deleteWidget failed");
                 }
+            }
+            if (! widgetFound) {
+                console.log("WidgetService.deleteWidget failed");
             }
         }
 

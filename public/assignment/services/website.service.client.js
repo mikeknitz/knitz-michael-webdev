@@ -69,14 +69,17 @@
             // Merge argument website into database website
             // Return updated website
 
+            var websiteFound = false;
             for (var w in websites) {
                 var website_old = websites[w];
                 if (website_old._id == websiteId) {
+                    websiteFound = true;
                     $.extend(true, websites[w], website);
                     return websites[w];
-                } else {
-                    console.log("WebsiteService.updateWebsite failed")
                 }
+            }
+            if (! websiteFound) {
+                console.log("WebsiteService.updateWebsite failed");
             }
 
         }
@@ -85,15 +88,19 @@
             // Delete website from database whose website._id matches argument websiteId
             // Return true if successful
 
+            var websiteFound = false;
             for (var w in websites) {
                 var website = websites[w];
                 if (website._id == websiteId) {
+                    websiteFound = true;
                     websites.splice(w, 1);
                     return true;
-                } else {
-                    console.log("WebsiteService.deleteWebsite failed")
                 }
             }
+            if (! websiteFound) {
+                console.log("WebsiteService.deleteWebsite failed");
+            }
+
         }
 
         function guid() {
