@@ -86,14 +86,19 @@
             // Merge argument user into database user
             // Return updated user
 
-            for (var u in users)
+            var userFound = false;
+            for (var u in users) {
                 var user_old = users[u];
-                if (user_old._id == userId) {
+                if (user_old._id == parseInt(userId)) {
                     $.extend(true, users[u], user);
+                    userFound = true;
                     return users[u];
-                } else {
-                    console.log("UserService.updateUser failed")
                 }
+            }
+            if (! userFound) {
+                console.log("UserService.updateUser failed")
+            }
+
         }
 
         function deleteUser(userId) {
