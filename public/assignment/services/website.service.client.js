@@ -33,4 +33,4 @@
         function deleteWebsite(websiteId) {}
 
     }
-}
+})();
