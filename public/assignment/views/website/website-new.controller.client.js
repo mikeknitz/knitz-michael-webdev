@@ -19,7 +19,7 @@
             console.log(vm.websites);
 
             // Create new website using attr's from the view
-            // Attr's don't need to be complete --> service merges them
+            // Attr's don't need to be complete -> service merges them
             vm.createWebsite = createWebsite;
             function createWebsite(name, description) {
                 // Create website with attr's to pass to WebsiteService.createWebsite

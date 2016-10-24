@@ -35,7 +35,7 @@
                 };
 
                 WebsiteService.updateWebsite(vm.website._id, updatedWebsite);
-                $location.url("/user/" + vm.userId + "/website/" + vm.website._id);
+                $location.url("/user/" + vm.userId + "/website");
 
             };
 

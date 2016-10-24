@@ -1,92 +1,94 @@
+<!-- Split Header for Wider Devices----------------------------------------- -->
 <div class="hidden-xs">
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="row">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="row">
 
-      <div class="col-xs-4 container-fluid">
-        <div class="navbar-brand">
-          <a href="page-list.view.client.html" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a>
-          <a class="navbar-link" href="#">Pages</a>
+            <div class="col-xs-4 container-fluid">
+                <div class="navbar-brand">
+                    <!--Back button-->
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link"><span
+                            class="glyphicon glyphicon-chevron-left"></span></a>
+                    <a class="navbar-link">Pages</a>
+                </div>
+                <p class="navbar-text pull-right">
+                    <!--New page button-->
+                    <a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new"><span
+                            class="glyphicon glyphicon-plus"></span></a>
+                </p>
+            </div>
+
+            <div class="col-xs-8 container-fluid">
+                <div class="navbar-brand">
+                    <a class="navbar-link">New Page</a>
+                </div>
+                <p class="navbar-text pull-right">
+                    <!--Create page button-->
+                    <a ng-click="model.createPage(model.name, model.description)" class="navbar-link"><span
+                            class="glyphicon glyphicon-ok"></span></a>
+                </p>
+            </div>
+
         </div>
-        <p class="navbar-text pull-right">
-          <a class="navbar-link" href="page-new.view.client.html"><span class="glyphicon glyphicon-plus"></span></a>
-        </p>
-      </div>
-
-      <div class="col-xs-8 container-fluid">
-        <div class="navbar-brand">
-          <a class="navbar-link" href="#">New Page</a>
-        </div>
-        <p class="navbar-text pull-right">
-          <a class="navbar-link" href="page-list.view.client.html"><span class="glyphicon glyphicon-ok"></span></a>
-        </p>
-      </div>
-
-    </div>
-  </nav>
+    </nav>
 </div>
 
+<!-- Non-Split Header for Smaller Devices----------------------------------- -->
 <div class="visible-xs">
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-brand">
-        <a href="page-list.view.client.html" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a>
-        <a class="navbar-link" href="#">New Page</a>
-      </div>
-      <p class="navbar-text pull-right">
-        <a class="navbar-link" href="page-list.view.client.html"><span class="glyphicon glyphicon-ok"></span></a>
-      </p>
-    </div>
-  </nav>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <!--Back button to go to page list-->
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link"><span
+                        class="glyphicon glyphicon-chevron-left"></span></a>
+                <a class="navbar-link">New Page</a>
+            </div>
+            <p class="navbar-text pull-right">
+                <!--Create page button-->
+                <a ng-click="model.createPage(model.name, model.description)" class="navbar-link"><span
+                        class="glyphicon glyphicon-ok"></span></a>
+            </p>
+        </div>
+    </nav>
 </div>
+<!-- ----------------------------------------------------------------------- -->
 
 
 <div class="container-fluid">
-  <div class="hidden-xs vert_line"></div>
+    <div class="hidden-xs vert_line"></div>
 
-  <div class="row">
-    <div class="hidden-xs col-xs-4">
-      <div class="container-fluid padding">
-        <div class="padding-vert">
-          <a href="../widget/widget-list.view.client.html">Blog Post</a>
-          <a class="pull-right" href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog"></span></a><br>
+    <div class="row">
+        <div class="hidden-xs col-xs-4">
+            <div class="container-fluid padding">
+                <div ng-repeat="page in model.pages" class="padding-vert">
+                    <!-- name of page -> link to widget-list-->
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+                    <!-- cog -> link to edit page-->
+                    <a class="pull-right" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}"><span class="glyphicon glyphicon-cog"></span></a><br>
+                </div>
+            </div>
         </div>
-        <div class="padding-vert">
-          <a href="../widget/widget-list.view.client.html">Blogs</a>
-          <a class="pull-right" href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog"></span></a><br>
+
+        <div class="col-xs-12 col-sm-8 padding">
+            <!--Page name-->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input ng-model="model.name" type="text" class="form-control" id="name" placeholder="Page name">
+            </div>
+            <!--Page description-->
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea ng-model="model.description" type="text" class="form-control" id="description" placeholder="Description" rows="5"></textarea>
+            </div>
         </div>
-        <div class="padding-vert">
-          <a href="../widget/widget-list.view.client.html">Home</a>
-          <a class="pull-right" href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog"></span></a><br>
-        </div>
-        <div class="padding-vert">
-          <a href="../widget/widget-list.view.client.html">About</a>
-          <a class="pull-right" href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog"></span></a><br>
-        </div>
-        <div class="padding-vert">
-          <a href="../widget/widget-list.view.client.html">Contact Us</a>
-          <a class="pull-right" href="page-edit.view.client.html"><span class="glyphicon glyphicon-cog"></span></a><br>
-        </div>
-      </div>
+
     </div>
-
-    <div class="col-xs-12 col-sm-8 padding">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" value="Page Name">
-      </div>
-      <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" placeholder="Page Title">
-      </div>
-    </div>
-
-  </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid">
-    <div class="navbar-text pull-right">
-      <a href="../user/profile.view.client.html"><span class="glyphicon glyphicon-user"></span></a>
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <!--Go to profile-->
+            <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
+        </div>
     </div>
-  </div>
 </nav>
