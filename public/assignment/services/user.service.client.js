@@ -29,7 +29,8 @@
 
 
         function createUser(user) {
-            // receives user from controller with user.username and user.password
+            // Receives user from controller with user.username and user.password
+            // Adds new user to database if username not already taken
 
             // If user.username already taken --> error
             if (findUserByUsername(user.username)) {
@@ -40,13 +41,14 @@
                 user._id = guid();
                 users.push(user)
                 console.log("user added to database")
-                return true;
+                return user;
             }
         }
 
         function findUserById(userId) {
             // Iterate through users array and check if userId matches user._id
             // Return the user if found
+
             for (var u in users) {
                 var user = users[u];
                 if (user._id == userId) {
@@ -58,6 +60,7 @@
         function findUserByUsername(username) {
             // Iterate through users array and check if username matches user.username
             // Return the user if found
+
             for (var u in users) {
                 var user = users[u];
                 if (user.username === username) {
@@ -69,6 +72,7 @@
         function findUserByCredentials(username, password) {
             // Iterate through users, return matching user object
             // Return the user if found
+
             for (var u in users) {
                 var user = users[u];
                 if (   user.username === username
@@ -79,12 +83,14 @@
         }
 
         function updateUser(userId, user) {
-            // Merge argument user into users.user using jQuery.extend()
+            // Merge argument user into users.user
+            // Return updated user
+
             for (var u in users)
                 var user_old = users[u];
                 if (user_old._id == userId) {
                     $.extend(true, users[u], user);
-                    return true;
+                    return users[u];
                 } else {
                     console.log("UserService.updateUser failed")
                 }
@@ -92,6 +98,8 @@
 
         function deleteUser(userId) {
             // Delete users.user with matching userId
+            // Return true if successful
+
             for (var u in users) {
                 var user = users[u];
                 if (user._id == userId) {
