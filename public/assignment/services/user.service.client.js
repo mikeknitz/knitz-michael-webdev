@@ -28,11 +28,47 @@
         return api;
 
 
-        function createUser(user) {}
-        function findUserById(userId) {}
-        function findUserByUsername(username) {}
+        function createUser(user) {
+            // receives user from controller with user.username and user.password
+
+            // If user.username already taken --> error
+            if (findUserByUsername(user.username)) {
+                console.log("Username already taken");
+            }
+            // Otherwise, push user to users array and add an id
+            else {
+                user._id = guid();
+                users.push(user)
+                console.log("user added to database")
+                return true;
+            }
+        }
+
+        function findUserById(userId) {
+            // Iterate through users array and check if userId matches user._id
+            // Return the user if found
+            for (var u in users) {
+                var user = users[u];
+                if (user._id == userId) {
+                    return user;
+                }
+            }
+        }
+
+        function findUserByUsername(username) {
+            // Iterate through users array and check if username matches user.username
+            // Return the user if found
+            for (var u in users) {
+                var user = users[u];
+                if (user.username === username) {
+                    return user;
+                }
+            }
+        }
+
         function findUserByCredentials(username, password) {
             // Iterate through users, return matching user object
+            // Return the user if found
             for (var u in users) {
                 var user = users[u];
                 if (   user.username === username
@@ -41,8 +77,42 @@
                 }
             }
         }
-        function updateUser(userId, user) {}
-        function deleteUser(userId) {}
+
+        function updateUser(userId, user) {
+            // Merge argument user into users.user using jQuery.extend()
+            for (var u in users)
+                var user_old = users[u];
+                if (user_old._id == userId) {
+                    $.extend(true, users[u], user);
+                    return true;
+                } else {
+                    console.log("UserService.updateUser failed")
+                }
+        }
+
+        function deleteUser(userId) {
+            // Delete users.user with matching userId
+            for (var u in users) {
+                var user = users[u];
+                if (user._id == userId) {
+                    users.splice(u, 1);
+                    return true;
+                } else {
+                    console.log("UserService.deleteUser failed")
+                }
+            }
+        }
+
+        function guid() {
+            // Create guid to use for new users
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                s4() + '-' + s4() + s4() + s4();
+        };
 
     }
 

@@ -15,7 +15,7 @@
             // Throw error if credentials invalid
             if (! user) { vm.error = "Invalid credentials"; }
             //  Navigate to user page
-            else { $location.url("/user/" + user._id) }
+            else { $location.url("/user/" + user._id); }
         }
 
     }
