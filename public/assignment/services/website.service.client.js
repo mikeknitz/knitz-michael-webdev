@@ -43,6 +43,7 @@
 
         function findWebsitesByUser(userId) {
             // Returns array of all websites for website.developerId == userId
+
             var user_websites = [];
             for (var w in websites) {
                 var website = websites[w];
@@ -55,6 +56,7 @@
 
         function findWebsiteById(websiteId) {
             // Return website whose _id matches websiteId argument
+
             for (var w in websites) {
                 var website = websites[w];
                 if (website._id == websiteId) {
@@ -64,13 +66,14 @@
         }
 
         function updateWebsite(websiteId, website) {
-            // Merge argument website into websites.website
+            // Merge argument website into database website
             // Return updated website
 
             for (var w in websites) {
                 var website_old = websites[w];
                 if (website_old._id == websiteId) {
                     $.extend(true, websites[w], website);
+                    return websites[w];
                 } else {
                     console.log("WebsiteService.updateWebsite failed")
                 }
@@ -79,7 +82,7 @@
         }
 
         function deleteWebsite(websiteId) {
-            // Delete website from database whose website._id matches websiteId
+            // Delete website from database whose website._id matches argument websiteId
             // Return true if successful
 
             for (var w in websites) {

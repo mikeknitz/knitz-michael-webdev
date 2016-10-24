@@ -83,7 +83,7 @@
         }
 
         function updateUser(userId, user) {
-            // Merge argument user into users.user
+            // Merge argument user into database user
             // Return updated user
 
             for (var u in users)
