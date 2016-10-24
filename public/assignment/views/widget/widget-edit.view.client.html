@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6 navbar-header">
+                <div class="navbar-brand">
+                    <!--Back button goes to widget list-->
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+                       class="navbar-link"><span
+                            class="glyphicon glyphicon-chevron-left"></span></a>
+                    <a class="navbar-link">Widget Edit</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <p class="navbar-text pull-right">
+                    <!--Update widget-->
+                    <a ng-click="model.updateWidget()" class="navbar-link"><span
+                            class="glyphicon glyphicon-ok"></span></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--ng-switch stuff goes here-->
+<div ng-switch="model.widget.widgetType">
+    <div ng-switch-when="HEADER">
+        <ng-include src="'views/widget/widget-header.view.client.html'"></ng-include>
+    </div>
+    <div ng-switch-when="IMAGE">
+        <ng-include src="'views/widget/widget-image.view.client.html'"></ng-include>
+    </div>
+    <div ng-switch-when="YOUTUBE">
+        <ng-include src="'views/widget/widget-youtube.view.client.html'"></ng-include>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <!--Go to profile-->
+            <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
+        </div>
+    </div>
+</nav>

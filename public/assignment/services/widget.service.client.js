@@ -8,20 +8,32 @@
 
         // Hard-coded widget list --> Use MongoDB later
         var widgets = [
-          { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
-          { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-          { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%", "url": "http://lorempixel.com/400/200/"},
-          { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-          { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-          { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%", "url": "https://youtu.be/AM2Ivdi9c4E" },
-          { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
+            {"_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
+            {"_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+            {
+                "_id": "345",
+                "widgetType": "IMAGE",
+                "pageId": "321",
+                "width": "100%",
+                "url": "http://lorempixel.com/400/200/"
+            },
+            {"_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
+            {"_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+            {
+                "_id": "678",
+                "widgetType": "YOUTUBE",
+                "pageId": "321",
+                "width": "100%",
+                "url": "https://youtu.be/AM2Ivdi9c4E"
+            },
+            {"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
 
         // API for controllers to use
         var api = {
             createWidget: createWidget,
             findWidgetsByPageId: findWidgetsByPageId,
-            findWidgetByPageId: findWidgetByPageId,
+            findWidgetById: findWidgetById,
             updateWidget: updateWidget,
             deleteWidget: deleteWidget
         };
@@ -35,7 +47,7 @@
             // Set a unique _id for the widget
             widget._id = guid();
             // Set widget.pageId to provided pageId
-            widget._pageId = pageId;
+            widget.pageId = pageId;
             // Add to widgets database
             widgets.push(widget);
             // Return the updated widget
@@ -49,13 +61,13 @@
             for (var w in widgets) {
                 var widget = widgets[w];
                 if (widget.pageId == pageId) {
-                    page.widgets.push(widget)
+                    page_widgets.push(widget)
                 }
-                return page_widgets;
             }
+            return page_widgets;
         }
 
-        function findWidgetByPageId(widgetId) {
+        function findWidgetById(widgetId) {
             //  Return widget whose widget._id matches argument widgetId
 
             for (var w in widgets) {
@@ -78,7 +90,7 @@
                     return widgets[w];
                 }
             }
-            if (! widgetFound) {
+            if (!widgetFound) {
                 console.log("WidgetService.updateWidget failed");
             }
         }
@@ -96,7 +108,7 @@
                     return true;
                 }
             }
-            if (! widgetFound) {
+            if (!widgetFound) {
                 console.log("WidgetService.deleteWidget failed");
             }
         }
@@ -108,6 +120,7 @@
                     .toString(16)
                     .substring(1);
             }
+
             return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
                 s4() + '-' + s4() + s4() + s4();
         };

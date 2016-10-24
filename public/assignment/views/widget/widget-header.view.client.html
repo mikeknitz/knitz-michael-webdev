@@ -1,23 +1,19 @@
 <div class="container-fluid padding">
-    <!--youtubeName-->
+    <!--headerName-->
     <div class="form-group">
         <label for="name">Name</label>
         <input ng-model="model.widget.name" type="text" class="form-control" id="name" placeholder="Name">
     </div>
-    <!--youtubeText-->
+    <!--headerText-->
     <div class="form-group">
         <label for="title">Text</label>
         <input ng-model="model.widget.text" type="text" class="form-control" id="title" placeholder="Text">
     </div>
-    <!--youtubeURL-->
+    <!--headerSize-->
     <div class="form-group">
-        <label for="url">URL</label>
-        <input ng-model="model.widget.url" type="text" class="form-control" id="url" placeholder="https://youtu.be/L4GrDOOIIbk">
+        <label for="size">Size</label>
+        <input ng-model="model.widget.size" type="text" class="form-control" id="size" placeholder="3">
     </div>
-    <!--youtubeWidth-->
-    <div class="form-group">
-        <label for="width">Width</label>
-        <input ng-model="model.widget.width" type="text" class="form-control" id="width" placeholder="100%">
-    </div>
+    <!--Delete button-->
     <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
 </div>
