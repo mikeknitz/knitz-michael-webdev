@@ -1,15 +1,24 @@
 <div class="container-fluid">
-  <h1>Login</h1>
-  <div class="form-group">
-    <input type="text"
-           class="form-control"
-           placeholder="username"/>
-    <input type="password"
-           class="form-control"
-           placeholder="password"/>
-    <a class="btn btn-primary btn-block"
-       href="#/user/123">Login</a>
-    <a class="btn btn-success btn-block"
-       href="#/register">Register</a>
-  </div>
+    <h1>Login</h1>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+    <div class="form-group">
+        <!-- Username entry -->
+        <input type="text"
+               ng-model="model.username"
+               class="form-control"
+               placeholder="username"/>
+        <!-- Password entry -->
+        <input type="password"
+               ng-model="model.password"
+               class="form-control"
+               placeholder="password"/>
+        <!-- Login/Register buttons -->
+        <a class="btn btn-primary btn-block"
+           ng-click="model.login(model.username, model.password)">
+            Login</a>
+        <a class="btn btn-success btn-block"
+           href="#/register">Register</a>
+    </div>
 </div>
