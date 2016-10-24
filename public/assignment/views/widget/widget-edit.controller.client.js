@@ -2,9 +2,9 @@
     "use strict";
     angular
         .module("WebAppMaker")
-        .controller("RegisterController", RegisterController)
+        .controller("EditWidgetController", EditWidgetController)
 
-    function RegisterController() {
+    function EditWidgetController() {
         var vm = this;
     }
 
