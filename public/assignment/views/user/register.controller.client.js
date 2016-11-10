@@ -11,6 +11,7 @@
         function init() {
 
             vm.register = register;
+
             function register(username, password, verifyPassword) {
                 if (password != verifyPassword) {
                     vm.error = "Passwords do not match";

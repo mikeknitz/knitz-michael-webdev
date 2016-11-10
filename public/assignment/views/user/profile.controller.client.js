@@ -14,7 +14,18 @@
         function init() {
 
             // Grab user from UserService
-            vm.user = UserService.findUserById(vm.userId);
+            // vm.user = UserService.findUserById(vm.userId);
+
+            // Get user object
+            var promise = UserService.findUserById(vm.userId);
+            promise
+                .success(function(user) {
+                    if (user != "0") {
+                        vm.user = user;
+                    }
+                })
+                .error(function() {
+                });
 
             // Function to update user with UserService.updateUser
             vm.updateUser = updateUser;

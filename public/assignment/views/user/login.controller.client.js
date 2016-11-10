@@ -14,11 +14,21 @@
             // Login functionality for login.view.client.html
             function login(username, password) {
                 // Grab user object from database
-                var user = UserService.findUserByCredentials(username, password);
-                // Throw error if credentials invalid
-                if (! user) { vm.error = "Invalid credentials"; }
-                //  Navigate to user page
-                else { $location.url("/user/" + user._id); }
+                // It will actually be a promise
+                // var user = UserService.findUserByCredentials(username, password);
+                var promise = UserService.findUserByCredentials(username, password);
+                promise
+                    .success(function (user){
+                        if (user === "0") {
+                            // Throw error if credentials invalid
+                            vm.error = "Invalid credentials";
+                        } else {
+                            //  Navigate to user page
+                            $location.url("/user/" + user._id);
+                        }
+                    })
+                    .error(function (){
+                    })
             }
 
         }

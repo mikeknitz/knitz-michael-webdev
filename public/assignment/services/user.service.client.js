@@ -4,7 +4,7 @@
         .module("WebAppMaker")
         .factory("UserService", UserService)
 
-    function UserService() {
+    function UserService($http) {
 
         // Hard-coded set of users for now --> MongoDB database later
         var users =
@@ -32,54 +32,90 @@
             // Receives user from controller with user.username and user.password
             // Adds new user to database if username not already taken
 
-            // If user.username already taken --> error
-            if (findUserByUsername(user.username)) {
-                console.log("Username already taken");
-            }
-            // Otherwise, push user to users array and add an id
-            else {
-                user._id = guid();
-                users.push(user)
-                console.log("user added to database")
-                return user;
-            }
+            // // If user.username already taken --> error
+            // if (findUserByUsername(user.username)) {
+            //     console.log("Username already taken");
+            // }
+            // // Otherwise, push user to users array and add an id
+            // else {
+            //     user._id = guid();
+            //     users.push(user)
+            //     console.log("user added to database")
+            //     return user;
+            // }
+
+            // Return error if username is already taken
+            // do this after you refactor the findUserByUsername
+
+
+
+
+
+            // Controller passes a new user object it got from the view to be created
+
+
+            // First do a check if the username is taken, return nothing if taken
+            //     Controller sets vm.error if it gets nothing in return
+            findUserByUsername(user.username)
+                .success(function() {
+                    console.log("Username already taken");
+                    return;
+                }).error(function(){})
+
+            // Otherwise, create a new _id and return a POST request
+            user._id = guid();
+            return $http.post()
+
         }
 
         function findUserById(userId) {
             // Iterate through users array and check if userId matches user._id
             // Return the user if found
 
-            for (var u in users) {
-                var user = users[u];
-                if (user._id == userId) {
-                    return user;
-                }
-            }
+            // for (var u in users) {
+            //     var user = users[u];
+            //     if (user._id == userId) {
+            //         return user;
+            //     }
+            // }
+
+            // Send request to the api, return a promise
+            var url = "/api/user/" + userId;
+            return $http.get(url);
+
         }
 
         function findUserByUsername(username) {
-            // Iterate through users array and check if username matches user.username
-            // Return the user if found
+            // // Iterate through users array and check if username matches user.username
+            // // Return the user if found
+            //
+            // for (var u in users) {
+            //     var user = users[u];
+            //     if (user.username === username) {
+            //         return user;
+            //     }
+            // }
 
-            for (var u in users) {
-                var user = users[u];
-                if (user.username === username) {
-                    return user;
-                }
-            }
+            return $http.get("/api/user?username=" + username)
+
         }
 
         function findUserByCredentials(username, password) {
-            // Iterate through users, return matching user object
-            // Return the user if found
+            // // Iterate through users, return matching user object
+            // // Return the user if found
+            //
+            // for (var u in users) {
+            //     var user = users[u];
+            //     if (   user.username === username
+            //         && user.password === password) {
+            //         return user;
+            //     }
+            // }
 
-            for (var u in users) {
-                var user = users[u];
-                if (   user.username === username
-                    && user.password === password) {
-                    return user;
-                }
-            }
+            // Send request to the api, return a promise
+            var url = "/api/user?username=" + username + "&password=" + password;
+            return $http.get(url);
+
         }
 
         function updateUser(userId, user) {
