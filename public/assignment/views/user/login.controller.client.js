@@ -15,9 +15,7 @@
             function login(username, password) {
                 // Grab user object from database
                 // It will actually be a promise
-                // var user = UserService.findUserByCredentials(username, password);
-                var promise = UserService.findUserByCredentials(username, password);
-                promise
+                UserService.findUserByCredentials(username, password);
                     .success(function (user){
                         if (user === "0") {
                             // Throw error if credentials invalid

@@ -29,43 +29,14 @@
 
 
         function createUser(user) {
-            // Receives user from controller with user.username and user.password
-            // Adds new user to database if username not already taken
+            // Parameter user from controller
+            //     User object only includes username and password attributes
+            //     Server does the check if username is taken
 
-            // // If user.username already taken --> error
-            // if (findUserByUsername(user.username)) {
-            //     console.log("Username already taken");
-            // }
-            // // Otherwise, push user to users array and add an id
-            // else {
-            //     user._id = guid();
-            //     users.push(user)
-            //     console.log("user added to database")
-            //     return user;
-            // }
-
-            // Return error if username is already taken
-            // do this after you refactor the findUserByUsername
-
-
-
-
-
-            // Controller passes a new user object it got from the view to be created
-
-
-            // First do a check if the username is taken, return nothing if taken
-            //     Controller sets vm.error if it gets nothing in return
-            findUserByUsername(user.username)
-                .success(function() {
-                    console.log("Username already taken");
-                    return;
-                }).error(function(){})
-
-            // Otherwise, create a new _id and return a POST request
-            user._id = guid();
-            return $http.post()
-
+            // Otherwise, return a POST request
+            // Request returns new user object added in the promise
+            var url = "/api/user?username="+user.username+"&password="+user.password;
+            return $http.post(url);
         }
 
         function findUserById(userId) {
@@ -96,6 +67,7 @@
             //     }
             // }
 
+            // Return GET request for the user object
             return $http.get("/api/user?username=" + username)
 
         }
