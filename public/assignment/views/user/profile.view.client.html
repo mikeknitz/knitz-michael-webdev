@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a class="navbar-brand">Profile</a>
         <p class="navbar-text pull-right">
-            <a ng-click="model.updateUser(model.user.username, model.user.firstName, model.user.lastName)"
+            <a ng-click="model.updateUser()"
                     class="navbar-link"><span class="glyphicon glyphicon-ok"></span></a>
         </p>
     </div>
@@ -15,7 +15,7 @@
         <!--Username-->
         <div class="form-group">
             <label for="username">Username</label>
-            <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Username">
+            <input ng-model="model.username" type="text" class="form-control" id="username" placeholder="Username">
         </div>
         <!--Email address-->
         <div class="form-group">
@@ -25,12 +25,12 @@
         <!--First Name-->
         <div class="form-group">
             <label for="first-name">First Name</label>
-            <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Alice">
+            <input ng-model="model.firstName" type="text" class="form-control" id="first-name" placeholder="Alice">
         </div>
         <!--Last Name-->
         <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name"
+            <input ng-model="model.lastName" type="text" class="form-control" id="last-name"
                    placeholder="Wonderland">
         </div>
     </form>
@@ -38,6 +38,10 @@
     <!--model.error-->
     <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
+    </div>
+    <!--model.success-->
+    <div ng-show="model.success" class="alert alert-success" role="alert">
+        {{model.success}}
     </div>
     <!--Websites Button-->
     <a class="btn btn-primary btn-block"

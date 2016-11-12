@@ -40,20 +40,10 @@
         }
 
         function findUserById(userId) {
-            // Iterate through users array and check if userId matches user._id
-            // Return the user if found
-
-            // for (var u in users) {
-            //     var user = users[u];
-            //     if (user._id == userId) {
-            //         return user;
-            //     }
-            // }
-
             // Send request to the api, return a promise
+            // Promise contains user object or "0"
             var url = "/api/user/" + userId;
             return $http.get(url);
-
         }
 
         function findUserByUsername(username) {
@@ -90,23 +80,27 @@
 
         }
 
-        function updateUser(userId, user) {
+        function updateUser(updatedUser) {
             // Merge argument user into database user
             // Return updated user
 
-            var userFound = false;
-            for (var u in users) {
-                var user_old = users[u];
-                if (user_old._id == parseInt(userId)) {
-                    $.extend(true, users[u], user);
-                    userFound = true;
-                    return users[u];
-                }
-            }
-            if (! userFound) {
-                console.log("UserService.updateUser failed")
-            }
+            // var userFound = false;
+            // for (var u in users) {
+            //     var user_old = users[u];
+            //     if (user_old._id == parseInt(userId)) {
+            //         $.extend(true, users[u], user);
+            //         userFound = true;
+            //         return users[u];
+            //     }
+            // }
+            // if (! userFound) {
+            //     console.log("UserService.updateUser failed")
+            // }
 
+            // Pass updatedUser object to server api
+            // Returns user object in promise if successful
+            var url = "/api/user/" + updatedUser._id;
+            return $http.put(url, updatedUser);
         }
 
         function deleteUser(userId) {

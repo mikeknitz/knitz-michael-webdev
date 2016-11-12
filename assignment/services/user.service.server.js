@@ -11,8 +11,9 @@ module.exports = function (app) {
 
     // api requests
     app.get("/api/user", findUser);
-    app.get("/api/user/:uid", findUserById)
-    app.post("/api/user", createUser)
+    app.get("/api/user/:uid", findUserById);
+    app.post("/api/user", createUser);
+    app.put("/api/user/:uid", updateUser);
 
     // GET request contains either username and password or just username
     //     Logic in this function passes it to appropriate function
@@ -89,6 +90,41 @@ module.exports = function (app) {
         users.push(user);
         console.log("user added to database");
         res.send(user);
+    }
+
+
+    function updateUser(req, res) {
+        // Argument is updated user object containing new attr's to be merged
+        var updatedUser = req.body;
+
+        // Know when to send res.send("0");
+        var zeroState = 1;
+
+        // Check if new username is already taken before changing
+        // Also check that the new username isn't just the same one
+        //     (second part of if conditions)
+        for (var u in users) {
+            if (updatedUser.username === users[u].username
+                && updatedUser._id != users[u]._id) {
+                zeroState = null;
+                res.send("Username already taken");
+            }
+        }
+
+        // Otherwise, update the user object and return it
+        for (var u in users) {
+            if (updatedUser._id === users[u]._id) {
+                users[u].username = updatedUser.username;
+                users[u].firstName = updatedUser.firstName;
+                users[u].lastName = updatedUser.lastName;
+                zeroState = null;
+                res.send(users[u]);
+            }
+        }
+
+        // Otherwise, update fails
+        if (zeroState) { res.send("0") }
+
     }
 
 
