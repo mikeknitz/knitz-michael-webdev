@@ -35,8 +35,7 @@
 
             // Otherwise, return a POST request
             // Request returns new user object added in the promise
-            var url = "/api/user?username="+user.username+"&password="+user.password;
-            return $http.post(url);
+            return $http.post("/api/user", user);
         }
 
         function findUserById(userId) {
@@ -47,56 +46,17 @@
         }
 
         function findUserByUsername(username) {
-            // // Iterate through users array and check if username matches user.username
-            // // Return the user if found
-            //
-            // for (var u in users) {
-            //     var user = users[u];
-            //     if (user.username === username) {
-            //         return user;
-            //     }
-            // }
-
             // Return GET request for the user object
             return $http.get("/api/user?username=" + username)
-
         }
 
         function findUserByCredentials(username, password) {
-            // // Iterate through users, return matching user object
-            // // Return the user if found
-            //
-            // for (var u in users) {
-            //     var user = users[u];
-            //     if (   user.username === username
-            //         && user.password === password) {
-            //         return user;
-            //     }
-            // }
-
             // Send request to the api, return a promise
             var url = "/api/user?username=" + username + "&password=" + password;
             return $http.get(url);
-
         }
 
         function updateUser(updatedUser) {
-            // Merge argument user into database user
-            // Return updated user
-
-            // var userFound = false;
-            // for (var u in users) {
-            //     var user_old = users[u];
-            //     if (user_old._id == parseInt(userId)) {
-            //         $.extend(true, users[u], user);
-            //         userFound = true;
-            //         return users[u];
-            //     }
-            // }
-            // if (! userFound) {
-            //     console.log("UserService.updateUser failed")
-            // }
-
             // Pass updatedUser object to server api
             // Returns user object in promise if successful
             var url = "/api/user/" + updatedUser._id;
@@ -105,20 +65,8 @@
 
         function deleteUser(userId) {
             // Delete users.user with matching userId
-            // Return true if successful
-
-            var userFound = false;
-            for (var u in users) {
-                var user = users[u];
-                if (user._id == userId) {
-                    users.splice(u, 1);
-                    userFound = true;
-                    return true;
-                }
-            }
-            if (! userFound) {
-                console.log("UserService.deleteUser failed");
-            }
+            var url = "/api/user/" + userId;
+            return $http.delete(url);
         }
 
         function guid() {

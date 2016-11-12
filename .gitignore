@@ -1,3 +1,8 @@
 .DS_Store
 node_modules
 .idea/
+public/angular.js
+public/angular-route.js
+public/bootstrap.css
+public/jquery-1.12.4.js
+public/fonts/

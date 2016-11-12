@@ -14,6 +14,7 @@ module.exports = function (app) {
     app.get("/api/user/:uid", findUserById);
     app.post("/api/user", createUser);
     app.put("/api/user/:uid", updateUser);
+    app.delete("/api/user/:uid", deleteUser);
 
     // GET request contains either username and password or just username
     //     Logic in this function passes it to appropriate function
@@ -52,9 +53,6 @@ module.exports = function (app) {
     //------------------------------------------------------------------------------
 
 
-
-
-
     function findUserById(req, res) {
         // Req url "/api/user/:uid"
         // Send back the user object or "0"
@@ -70,8 +68,8 @@ module.exports = function (app) {
 
 
     function createUser(req, res) {
-        var username = req.query.username;
-        var password = req.query.password;
+        var username = req.body.username;
+        var password = req.body.password;
 
         // First check if username is already taken
         for (var u in users) {
@@ -127,6 +125,21 @@ module.exports = function (app) {
 
     }
 
+
+    function deleteUser (req, res) {
+        // Delete user
+        // res.send "1" for success "0" for failure
+        var userId = req.params.uid;
+        var userFound = false;
+        for (var u in users) {
+            if (users[u]._uid === userId) {
+                users.splice(u, 1);
+                userFound = true;
+                res.send("1");
+            }
+        }
+        if (! userFound) { res.send("0"); }
+    }
 
 
     function guid() {
