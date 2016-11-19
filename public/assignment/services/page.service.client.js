@@ -4,7 +4,7 @@
         .module("WebAppMaker")
         .factory("PageService", PageService)
 
-    function PageService() {
+    function PageService($http) {
 
         // Hard-coded page list --> Use MongoDB later
         var pages = [
@@ -23,32 +23,14 @@
         };
         return api;
 
-        function createPage(websiteId, page) {
-            // Receives website page containing all attributes except _id and websiteId
-            // Creates page and adds to database
-            // Returns website with updated attributes
-
-            // Set a unique _id for the website
-            page._id = guid();
-            // Set page.websiteId to the provided websiteId
-            page.websiteId = websiteId;
-            // Add to pages database
-            pages.push(page);
-            // Return the updated page
-            return page;
+        function createPage(newPage) {
+            var url = "/api/website/"+newPage.websiteId+"/page";
+            return $http.post(url, newPage);
         }
 
         function findPagesByWebsiteId(websiteId) {
-            // Return array of all pages whose page.websiteId matches websiteId argument
-
-            var website_pages = [];
-            for (var p in pages) {
-                var page = pages[p];
-                if (page.websiteId == websiteId) {
-                    website_pages.push(page);
-                }
-            }
-            return website_pages;
+            var url = "/api/website/"+websiteId+"/page";
+            return $http.get(url);
         }
 
         function findPageById(pageId) {

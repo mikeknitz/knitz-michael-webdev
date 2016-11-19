@@ -12,9 +12,17 @@
 
         function init() {
 
-            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
-            console.log("Current pages");
-            console.log(vm.pages);
+
+            // Retrieve list of pages for the website
+            PageService.findPagesByWebsiteId(vm.websiteId)
+                .success(function(pages){
+                    console.log("Current pages:")
+                    console.log(pages);
+                    vm.pages = pages;
+                })
+                .error(function(){});
+
+
 
         }
         init();

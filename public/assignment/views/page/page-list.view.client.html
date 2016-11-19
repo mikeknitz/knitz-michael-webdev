@@ -1,41 +1,42 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-6 navbar-header">
-                <div class="navbar-brand">
-                    <!--Back button-->
-                    <a href="#/user/{{model.userId}}/website" class="navbar-link"><span
-                            class="glyphicon glyphicon-chevron-left"></span></a>
-                    <a class="navbar-link">Pages</a>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <p class="navbar-text pull-right">
-                    <!--New page button-->
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" navbar-link"><span
-                        class="glyphicon glyphicon-plus"></span></a>
-                </p>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-6 navbar-header">
+        <div class="navbar-brand">
+          <!--Back to websites-->
+          <a href="#/user/{{model.userId}}/website" class="navbar-link">
+            <span class="glyphicon glyphicon-chevron-left"></span></a>
+          <a class="navbar-link">Pages</a>
         </div>
+      </div>
+      <div class="col-xs-6">
+        <p class="navbar-text pull-right">
+          <!--Create new page-->
+          <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" navbar-link">
+            <span class="glyphicon glyphicon-plus"></span></a>
+        </p>
+      </div>
     </div>
+  </div>
 </nav>
 
 
 <div class="container-fluid padding">
-    <div ng-repeat="page in model.pages" class="padding-vert">
-        <!-- name of page -> link to widget-list-->
-        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
-        <!-- cog -> link to edit page-->
-        <a class="pull-right" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}"><span class="glyphicon glyphicon-cog"></span></a><br>
-    </div>
+  <div ng-repeat="page in model.pages" class="padding-vert">
+    <!-- name of page -> link to widget-list-->
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+    <!-- cog -> link to edit page-->
+    <a class="pull-right" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}"><span
+        class="glyphicon glyphicon-cog"></span></a><br>
+  </div>
 </div>
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-text pull-right">
-            <!--Go to profile-->
-            <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
-        </div>
+  <div class="container-fluid">
+    <div class="navbar-text pull-right">
+      <!--Go to profile-->
+      <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
     </div>
+  </div>
 </nav>

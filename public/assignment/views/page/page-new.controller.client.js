@@ -12,19 +12,40 @@
 
         function init() {
 
-            // Get all pages in the website
-            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
-            console.log("Current pages");
-            console.log(vm.pages);
 
-            // Create new page using attr's from the view
-            // Attr's don't need to be complete -> service merges them
+
+            // Retrieve list of pages for the website
+            PageService.findPagesByWebsiteId(vm.websiteId)
+                .success(function(pages){
+                    console.log("Current pages:")
+                    console.log(pages);
+                    vm.pages = pages;
+                })
+                .error(function(){});
+
+
+
+
+
+            // Create page button
             vm.createPage = createPage;
-            function createPage(name, description) {
-                // Create page with attr's to pass to PageService.createPage
-                var newPage = {name: name, description: description};
-                PageService.createPage(vm.websiteId, newPage);
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page")
+            function createPage() {
+                // Send attr's to be merged into a new page
+                //     _id will be created on the server
+
+                var newPage = {
+                    name: vm.name,
+                    description: vm.description,
+                    websiteId: vm.websiteId
+                };
+
+                PageService.createPage(newPage)
+                    .success(function(page){
+                        console.log("New page added to database:");
+                        console.log(page);
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                    })
+                    .error(function(){});
             }
 
         }

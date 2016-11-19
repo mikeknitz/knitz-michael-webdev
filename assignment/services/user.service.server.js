@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function(app) {
 
     // Switch to MongoDB later
     var users =
@@ -17,7 +17,7 @@ module.exports = function (app) {
     app.put("/api/user/:uid", updateUser);
     app.delete("/api/user/:uid", deleteUser);
 
-    // GET request contains either username and password or just username
+    // Request for findUser contains either username and password or just username
     //     Logic in this function passes it to appropriate function
     //     Either way, user object is passed back in the promise
     //------------------------------------------------------------------------------
