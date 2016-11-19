@@ -1,5 +1,6 @@
 module.exports = function (app) {
 
+    // Switch to MongoDB later
     var users =
         [
             {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
@@ -96,7 +97,7 @@ module.exports = function (app) {
         var updatedUser = req.body;
 
         // Know when to send res.send("0");
-        var zeroState = 1;
+        var userFound = 0;
 
         // Check if new username is already taken before changing
         // Also check that the new username isn't just the same one
@@ -104,7 +105,7 @@ module.exports = function (app) {
         for (var u in users) {
             if (updatedUser.username === users[u].username
                 && updatedUser._id != users[u]._id) {
-                zeroState = null;
+                userFound = 1;
                 res.send("Username already taken");
             }
         }
@@ -115,13 +116,13 @@ module.exports = function (app) {
                 users[u].username = updatedUser.username;
                 users[u].firstName = updatedUser.firstName;
                 users[u].lastName = updatedUser.lastName;
-                zeroState = null;
+                userFound = 1;
                 res.send(users[u]);
             }
         }
 
         // Otherwise, update fails
-        if (zeroState) { res.send("0") }
+        if (userFound === 0) { res.send("0") }
 
     }
 

@@ -1,91 +1,103 @@
 <!-- Split Header for Wider Devices----------------------------------------- -->
 <div class="hidden-xs">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="row">
-
-            <div class="col-xs-4 container-fluid">
-                <div class="navbar-brand">
-                    <a href="#/user/{{model.userId}}/website" class="navbar-link"><span
-                            class="glyphicon glyphicon-chevron-left"></span></a>
-                    <a class="navbar-link">Websites</a>
-                </div>
-                <p class="navbar-text pull-right">
-                    <a class="navbar-link" href="#/user/{{model.userId}}/website/new"><span
-                            class="glyphicon glyphicon-plus"></span></a>
-                </p>
-            </div>
-
-            <div class="col-xs-8 container-fluid">
-                <div class="navbar-brand">
-                    <a class="navbar-link">Edit Website</a>
-                </div>
-                <p class="navbar-text pull-right">
-                    <!--Update website-->
-                    <a ng-click="model.updateWebsite(model.website.name, model.website.description)" class="navbar-link"><span class="glyphicon glyphicon-ok"></span></a>
-                </p>
-            </div>
-
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row">
+      <div class="col-xs-4 container-fluid">
+        <div class="navbar-brand">
+          <!--Back to website list-->
+          <a href="#/user/{{model.userId}}/website" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a>
+          <a class="navbar-link">Websites</a>
         </div>
-    </nav>
+        <p class="navbar-text pull-right">
+          <!--Create new website-->
+          <a class="navbar-link" href="#/user/{{model.userId}}/website/new"><span class="glyphicon glyphicon-plus"></span></a>
+        </p>
+      </div>
+
+      <div class="col-xs-8 container-fluid">
+        <div class="navbar-brand">
+          <a class="navbar-link">Edit Website</a>
+        </div>
+        <p class="navbar-text pull-right">
+          <!--Confirm changes and update website-->
+          <a ng-click="model.updateWebsite()" class="navbar-link"><span class="glyphicon glyphicon-ok"></span></a>
+        </p>
+      </div>
+
+    </div>
+  </nav>
 </div>
 
 <!-- Non-Split Header for Smaller Devices----------------------------------- -->
 <div class="visible-xs">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-brand">
-                <a href="#/user/{{model.userId}}/website" class="navbar-link"><span
-                        class="glyphicon glyphicon-chevron-left"></span></a>
-                <a class="navbar-link">Edit Website</a>
-            </div>
-            <p class="navbar-text pull-right">
-                <!--Update website-->
-                <a ng-click="model.updateWebsite(model.website.name, model.website.description)" class="navbar-link"><span class="glyphicon glyphicon-ok"></span></a>
-            </p>
-        </div>
-    </nav>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <!--Back to website list-->
+        <a href="#/user/{{model.userId}}/website" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="navbar-link">Edit Website</a>
+      </div>
+      <p class="navbar-text pull-right">
+        <!--Confirm changes and update website-->
+        <a ng-click="model.updateWebsite()" class="navbar-link"><span class="glyphicon glyphicon-ok"></span></a>
+      </p>
+    </div>
+  </nav>
 </div>
 
 
 <div class="container-fluid">
-    <div class="hidden-xs vert_line"></div>
+  <div class="hidden-xs vert_line"></div>
 
-    <div class="row">
-        <div class="hidden-xs col-xs-4">
-            <div class="container-fluid padding">
+  <div class="row">
 
-                <div ng-repeat="website in model.websites" class="padding-vert">
-                    <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
-                    <a class="pull-right" href="#/user/{{model.userId}}/website/{{website._id}}"><span class="glyphicon glyphicon-cog"></span></a><br>
-                </div>
 
-            </div>
+
+    <!--Left panel to hold list of websites-->
+    <div class="hidden-xs col-xs-4">
+      <div class="container-fluid padding">
+
+        <div ng-repeat="website in model.websites" class="padding-vert">
+          <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+          <a class="pull-right" href="#/user/{{model.userId}}/website/{{website._id}}"><span
+              class="glyphicon glyphicon-cog"></span></a><br>
         </div>
 
-        <div class="col-xs-12 col-sm-8 padding">
-            <div class="form-group">
-                <label for="website_name">Website Name</label>
-                <input ng-model="model.website.name" type="text" class="form-control" id="website_name" placeholder="Name">
-            </div>
-            <div class="form-group">
-                <label for="website_description">Website Description</label>
-                <textarea ng-model="model.website.description" class="form-control" id="website_description" placeholder="Description" rows="5"></textarea>
-            </div>
-            <!--model.error-->
-            <div ng-show="model.error" class="alert alert-danger" role="alert">
-                {{model.error}}
-            </div>
-            <!--delete button-->
-            <a ng-click="model.deleteWebsite(model.websiteId)" class="btn btn-danger btn-block">Delete</a>
-        </div>
-
+      </div>
     </div>
+
+
+
+
+    <!--Right panel to edit details of current website-->
+    <div class="col-xs-12 col-sm-8 padding">
+      <div class="form-group">
+        <label for="website_name">Website Name</label>
+        <input ng-model="model.website.name" type="text" class="form-control" id="website_name" placeholder="Name">
+      </div>
+      <div class="form-group">
+        <label for="website_description">Website Description</label>
+        <textarea ng-model="model.website.description" class="form-control" id="website_description"
+                  placeholder="Description" rows="5"></textarea>
+      </div>
+      <!--model.error-->
+      <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+      </div>
+      <!--delete button-->
+      <a ng-click="model.deleteWebsite()" class="btn btn-danger btn-block">Delete</a>
+    </div>
+
+
+
+
+  </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
-        </div>
+  <div class="container-fluid">
+    <div class="navbar-text pull-right">
+      <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
     </div>
+  </div>
 </nav>

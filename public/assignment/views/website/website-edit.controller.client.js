@@ -12,38 +12,61 @@
             // Get userId of logged-in user
             vm.userId = $routeParams.uid;
 
-            // Grab user's websites from WebsiteService
-            // This will populate the left sidebar even though we are editing just one
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            console.log("Current websites:");
-            console.log(vm.websites);
+            // Retrieve user's websites from WebsiteService
+            //     This will populate the left sidebar
+            WebsiteService.findWebsitesByUser(vm.userId)
+                .success(function(websites){
+                    vm.websites = websites;
+                })
+                .error(function(){});
 
-            // Get website being edited
+            // Retrieve website being edited
+            //     Will populate right panel with details
             vm.websiteId = $routeParams.wid;
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
-            console.log("Website being edited:");
-            console.log(vm.website);
+            WebsiteService.findWebsiteById(vm.websiteId)
+                .success(function(website){
+                    vm.website = website;
+                    console.log("Website being edited:");
+                    console.log(website);
+                })
+                .error(function(){});
 
             vm.updateWebsite = updateWebsite;
-            function updateWebsite(websiteName, websiteDescription) {
-                // Update website using settings from view
-                // updatedWebsite doesn't need complete attr's since they are just merged
+            function updateWebsite() {
 
+                // Details to be passed to updatedWebsite()
                 var updatedWebsite = {
-                    name: websiteName,
-                    description: websiteDescription
+                    _id: vm.website._id,
+                    name: vm.website.name,
+                    description: vm.website.description
                 };
 
-                WebsiteService.updateWebsite(vm.website._id, updatedWebsite);
-                $location.url("/user/" + vm.userId + "/website");
+                WebsiteService.updateWebsite(updatedWebsite)
+                    .success(function(website){
+                        console.log("Updated website:");
+                        console.log(website);
+                        // Once website is updated, go back to list of websites
+                        $location.url("/user/" + vm.userId + "/website");
+                    })
+                    .error(function(){});
 
             };
 
             vm.deleteWebsite = deleteWebsite;
-            function deleteWebsite(websiteId) {
-                WebsiteService.deleteWebsite(websiteId);
-                $location.path("/user/" + vm.userId + "/website");
+            // function deleteWebsite(websiteId) {
+            //     WebsiteService.deleteWebsite(websiteId);
+            // }
+
+            function deleteWebsite() {
+                WebsiteService.deleteWebsite(vm.website._id)
+                    .success(function(){
+                        console.log("Deleted website");
+                        $location.path("/user/" + vm.userId + "/website");
+                    })
+                    .error(function(){});
             }
+
+
 
         }
         init();

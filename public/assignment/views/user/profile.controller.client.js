@@ -8,13 +8,13 @@
 
         var vm = this;
         // Grab current user logged in
-        var userId = $routeParams.uid;
+        vm.userId = $routeParams.uid;
 
         // Wrap in init()
         function init() {
 
             // Get user object
-            UserService.findUserById(userId)
+            UserService.findUserById(vm.userId)
                 .success(function(user) {
                     if (user != "0") {
                         vm.username = user.username;
@@ -37,7 +37,7 @@
                     username: vm.username,
                     firstName: vm.firstName,
                     lastName: vm.lastName,
-                    _id: userId
+                    _id: vm.userId
                 };
 
                 UserService.updateUser(updatedUser)
@@ -57,7 +57,7 @@
                     })
                     .error(function(){});
                 // Reload page with new information
-                $location.url("/user/" + userId);
+                $location.url("/user/" + vm.userId);
             }
 
         }

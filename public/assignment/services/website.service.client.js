@@ -4,7 +4,7 @@
         .module("WebAppMaker")
         .factory("WebsiteService", WebsiteService)
 
-    function WebsiteService() {
+    function WebsiteService($http) {
 
         // Hard-coded website list --> Use MongoDB later
         var websites = [
@@ -27,79 +27,46 @@
         return api;
 
         function createWebsite(userId, website) {
-            // Receives website containing all attributes except _id and developerId
-            // Creates website and adds to database
-            // Returns website with updated attributes
-
-            // Set a unique _id for the website
-            website._id = guid();
-            // Set developerId to the userID
-            website.developerId = userId;
-            // Add to websites database
-            websites.push(website);
-            // Return updated website
-            return website;
+            var url = "/api/user/"+userId+"/website";
+            return $http.post(url, website)
         }
 
         function findWebsitesByUser(userId) {
-            // Returns array of all websites for website.developerId == userId
-
-            var user_websites = [];
-            for (var w in websites) {
-                var website = websites[w];
-                if (website.developerId == userId) {
-                    user_websites.push(website);
-                }
-            }
-            return user_websites;
+            var url = "/api/user/"+userId+"/website";
+            return $http.get(url);
         }
 
         function findWebsiteById(websiteId) {
-            // Return website whose _id matches websiteId argument
-
-            for (var w in websites) {
-                var website = websites[w];
-                if (website._id == websiteId) {
-                    return website;
-                }
-            }
+            var url = "/api/website/"+websiteId;
+            return $http.get(url);
         }
 
-        function updateWebsite(websiteId, website) {
+        function updateWebsite(updatedWebsite) {
+        // function updateWebsite(websiteId, website) {
             // Merge argument website into database website
             // Return updated website
 
-            var websiteFound = false;
-            for (var w in websites) {
-                var website_old = websites[w];
-                if (website_old._id == websiteId) {
-                    websiteFound = true;
-                    $.extend(true, websites[w], website);
-                    return websites[w];
-                }
-            }
-            if (! websiteFound) {
-                console.log("WebsiteService.updateWebsite failed");
-            }
+            // var websiteFound = false;
+            // for (var w in websites) {
+            //     var website_old = websites[w];
+            //     if (website_old._id == websiteId) {
+            //         websiteFound = true;
+            //         $.extend(true, websites[w], website);
+            //         return websites[w];
+            //     }
+            // }
+            // if (! websiteFound) {
+            //     console.log("WebsiteService.updateWebsite failed");
+            // }
+
+            var url = "/api/website/"+updatedWebsite._id;
+            return $http.put(url, updatedWebsite);
 
         }
 
         function deleteWebsite(websiteId) {
-            // Delete website from database whose website._id matches argument websiteId
-            // Return true if successful
-
-            var websiteFound = false;
-            for (var w in websites) {
-                var website = websites[w];
-                if (website._id == websiteId) {
-                    websiteFound = true;
-                    websites.splice(w, 1);
-                    return true;
-                }
-            }
-            if (! websiteFound) {
-                console.log("WebsiteService.deleteWebsite failed");
-            }
+            var url = "/api/website/"+websiteId;
+            return $http.delete(url);
 
         }
 

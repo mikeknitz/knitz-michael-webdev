@@ -11,11 +11,13 @@
         function init() {
 
             // Get userId of logged-in user
-            vm.userId = parseInt($routeParams.uid);
-            // Grab user's websites from WebsiteService
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            console.log("Current websites:");
-            console.log(vm.websites);
+            vm.userId = $routeParams.uid;
+            // Retrieve user's websites from WebsiteService
+            WebsiteService.findWebsitesByUser(vm.userId)
+                .success(function(websites){
+                    vm.websites = websites;
+                })
+                .error(function(){});
 
         }
         init();
