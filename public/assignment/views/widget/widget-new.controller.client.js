@@ -1,4 +1,4 @@
-(function(){
+(function () {
     "use strict";
     angular
         .module("WebAppMaker")
@@ -17,22 +17,29 @@
             // Specify which type in the view so the right attr's can be added
             vm.createWidget = createWidget;
             function createWidget(widgetType) {
-                // Send newWidget with widgetType set to WidgetService.createWidget
-                var newWidget = {widgetType: widgetType};
-                console.log("newWidget:");
-                console.log(newWidget);
-                var widget = WidgetService.createWidget(vm.pageId, newWidget);
-                console.log("new widget is:");
-                console.log(widget);
-                console.log("new widgets array is:");
-                console.log(WidgetService.findWidgetsByPageId(vm.pageId));
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId
-                               + "/page/" + vm.pageId + "/widget/" + widget._id);
+                // Create widget_new object and send to WidgetService
+                var widget_new = {
+                    widgetType: widgetType,
+                    pageId : vm.pageId
+                };
+                WidgetService.createWidget(widget_new)
+                    .success(function (widget_new) {
+                        console.log("Created new widget:");
+                        console.log(widget_new);
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId
+                            + "/page/" + vm.pageId + "/widget/" + widget_new._id);
+                    })
+                    .error(function () {
+                    });
+
+
             }
 
         }
+
         init();
 
     }
 
-})();
+})
+();

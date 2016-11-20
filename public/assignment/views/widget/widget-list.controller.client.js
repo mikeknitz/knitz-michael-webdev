@@ -14,9 +14,13 @@
         function init() {
 
             // Get all widgets for the current page
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
-            console.log("Current widgets:");
-            console.log("vm.widgets");
+            WidgetService.findWidgetsByPageId(vm.pageId)
+                .success(function(widgets){
+                    console.log("Current widgets:");
+                    console.log(widgets);
+                    vm.widgets = widgets;
+                })
+                .error(function(){});
 
         }
         init();

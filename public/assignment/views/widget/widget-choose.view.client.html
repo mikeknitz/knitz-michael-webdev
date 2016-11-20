@@ -1,31 +1,32 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-brand">
-            <!--Back button to widget list-->
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link"><span
-                    class="glyphicon glyphicon-chevron-left"></span></a>
-            <a class="navbar-link">Choose Widget</a>
-        </div>
+  <div class="container-fluid">
+    <div class="navbar-brand">
+      <!--Back button to widget list-->
+      <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+         class="navbar-link"><span
+          class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="navbar-link">Choose Widget</a>
     </div>
+  </div>
 </nav>
 
 <div class="container-fluid padding">
-    <div class="padding-vert">
-        <a ng-click="model.createWidget('HEADER')">Header</a>
-    </div>
-    <div class="padding-vert">
-        <a ng-click="model.createWidget('IMAGE')">Image</a>
-    </div>
-    <div class="padding-vert">
-        <a ng-click="model.createWidget('YOUTUBE')">Youtube</a>
-    </div>
+  <div class="padding-vert">
+    <a ng-click="model.createWidget('HEADER')">Header</a>
+  </div>
+  <div class="padding-vert">
+    <a ng-click="model.createWidget('IMAGE')">Image</a>
+  </div>
+  <div class="padding-vert">
+    <a ng-click="model.createWidget('YOUTUBE')">Youtube</a>
+  </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <!--Go to profile-->
-        <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
-        </div>
+  <div class="container-fluid">
+    <!--Go to profile-->
+    <div class="navbar-text pull-right">
+      <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
     </div>
+  </div>
 </nav>

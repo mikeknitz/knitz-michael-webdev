@@ -14,16 +14,29 @@
 
         function init() {
 
-            // Find widget currently editing
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+            WidgetService.findWidgetById(vm.widgetId)
+                .success(function(widget){
+                    console.log("Editing widget:");
+                    console.log(widget);
+                    vm.widget = widget;
+                })
+                .error(function(){});
 
             // Delete widget currently editing
-            // Redirect to widget list
+            // Redirect to widget list after
             vm.deleteWidget = deleteWidget;
             function deleteWidget() {
-                WidgetService.deleteWidget(vm.widgetId);
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId
-                              + "/page/" + vm.pageId + "/widget")
+
+                WidgetService.deleteWidget(vm.widgetId)
+                    .success(function(response){
+                        if (response === "1") {
+                            console.log("Widget deleted");
+                            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId
+                                + "/page/" + vm.pageId + "/widget");
+                        }
+                    })
+                    .error(function(){});
+
             }
 
             // Update widget

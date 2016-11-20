@@ -34,50 +34,18 @@
         }
 
         function findPageById(pageId) {
-            // Return page whose page._id matches argument pageId
-
-            for (var p in pages) {
-                var page = pages[p];
-                if (page._id == pageId) {
-                    return page;
-                }
-            }
+            var url = "/api/page/"+pageId;
+            return $http.get(url);
         }
 
-        function updatePage(pageId, page) {
-            // Merge argument page into database page
-            // Return updated website
-
-            var pageFound = false;
-            for (var p in pages) {
-                var page_old = pages[p];
-                if (page_old._id == pageId) {
-                    $.extend(true, pages[p], page);
-                    pageFound = true;
-                    return pages[p];
-                }
-            }
-            if (! pageFound) {
-                console.log("PageService.updatePage failed")
-            }
+        function updatePage(updatedPage, pageId) {
+            var url = "/api/page/"+pageId;
+            return $http.put(url, updatedPage);
         }
 
         function deletePage(pageId) {
-            // Delete page from database whose page._id matches argument pageId
-            // Return true if successful
-
-            var pageFound = false;
-            for (var p in pages) {
-                var page = pages[p];
-                if (page._id == pageId) {
-                    pages.splice(p, 1);
-                    pageFound = true;
-                    return true;
-                }
-            }
-            if (! pageFound) {
-                console.log("PageService.deletePage failed");
-            }
+            var url = "/api/page/"+pageId;
+            return $http.delete(url);
         }
 
         function guid() {

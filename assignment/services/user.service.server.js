@@ -152,6 +152,6 @@ module.exports = function(app) {
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
             s4() + '-' + s4() + s4() + s4();
-    };
+    }
 
-};
+}

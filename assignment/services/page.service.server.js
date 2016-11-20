@@ -11,6 +11,9 @@ module.exports = function (app) {
     // api requests
     app.get("/api/website/:wid/page", findPagesByWebsiteId);
     app.post("/api/website/:wid/page", createPage);
+    app.get("/api/page/:pid", findPageById);
+    app.put("/api/page/:pid", updatePage);
+    app.delete("/api/page/:pid", deletePage)
 
     function findPagesByWebsiteId(req, res) {
         // Receive websiteId and return all pages that match
@@ -39,6 +42,51 @@ module.exports = function (app) {
         pages.push(newPage);
         res.send(newPage);
 
+    }
+
+    function findPageById(req, res) {
+        // Receives pageId and returns the matching page
+        var pageId = req.params.pid;
+
+        for (var p in pages) {
+            var page = pages[p];
+            if (page._id === pageId) {
+                res.send(page);
+            }
+        }
+    }
+
+    function updatePage(req, res) {
+        // Receives updatedPage to merge
+        // Merges into database
+        // Returns updated page
+        var updatedPage = req.body;
+        var pageId = req.params.pid;
+
+        for (var p in pages) {
+            var page_db = pages[p];
+            if (page_db._id === pageId) {
+                page_db.name = updatedPage.name;
+                page_db.description = updatedPage.description;
+                res.send(page_db);
+            }
+        }
+
+    }
+
+    function deletePage(req, res) {
+        // Receives pageId
+        // Deletes it from database
+        // Returns a "1" if successful
+        var pageId = req.params.pid;
+
+        for (var p in pages) {
+            var page = pages[p];
+            if (page._id === pageId) {
+                pages.splice(p, 1);
+                res.send("1");
+            }
+        }
     }
 
     function guid() {

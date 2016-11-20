@@ -4,14 +4,16 @@
       <div class="col-xs-6 navbar-header">
         <div class="navbar-brand">
           <!--Link to websites-->
-          <a href="#/user/{{model.userId}}" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a>
+          <a href="#/user/{{model.userId}}" class="navbar-link"><span
+              class="glyphicon glyphicon-chevron-left"></span></a>
           <a class="navbar-link">Websites</a>
         </div>
       </div>
       <div class="col-xs-6">
         <p class="navbar-text pull-right">
           <!--Link to new website-->
-          <a class="navbar-link" href="#/user/{{model.userId}}/website/new"><span class="glyphicon glyphicon-plus"></span></a>
+          <a class="navbar-link" href="#/user/{{model.userId}}/website/new"><span
+              class="glyphicon glyphicon-plus"></span></a>
         </p>
       </div>
     </div>
@@ -23,7 +25,8 @@
 <div class="container-fluid padding">
   <div ng-repeat="website in model.websites" class="padding-vert">
     <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
-    <a class="pull-right" href="#/user/{{model.userId}}/website/{{website._id}}"><span class="glyphicon glyphicon-cog"></span></a><br>
+    <a class="pull-right" href="#/user/{{model.userId}}/website/{{website._id}}"><span
+        class="glyphicon glyphicon-cog"></span></a><br>
   </div>
 </div>
 

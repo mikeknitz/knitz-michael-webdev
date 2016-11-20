@@ -4,7 +4,7 @@
         .module("WebAppMaker")
         .factory("WidgetService", WidgetService)
 
-    function WidgetService() {
+    function WidgetService($http) {
 
         // Hard-coded widget list --> Use MongoDB later
         var widgets = [
@@ -39,43 +39,19 @@
         };
         return api;
 
-        function createWidget(pageId, widget) {
-            // Receives page widget containing all attributes except _id and pageId
-            // Creates widget and adds to database
-            // Returns widget with updated attributes
-
-            // Set a unique _id for the widget
-            widget._id = guid();
-            // Set widget.pageId to provided pageId
-            widget.pageId = pageId;
-            // Add to widgets database
-            widgets.push(widget);
-            // Return the updated widget
-            return widget;
+        function createWidget(widget_new) {
+            var url = "/api/page/"+widget_new.pageId+"/widget";
+            return $http.post(url, widget_new);
         }
 
         function findWidgetsByPageId(pageId) {
-            // Return array of all widgets whose widget.pageId matches pageId argument
-
-            var page_widgets = [];
-            for (var w in widgets) {
-                var widget = widgets[w];
-                if (widget.pageId == pageId) {
-                    page_widgets.push(widget)
-                }
-            }
-            return page_widgets;
+            var url = "/api/page/"+pageId+"/widget";
+            return $http.get(url);
         }
 
         function findWidgetById(widgetId) {
-            //  Return widget whose widget._id matches argument widgetId
-
-            for (var w in widgets) {
-                var widget = widgets[w];
-                if (widget._id == widgetId) {
-                    return widget;
-                }
-            }
+            var url = "/api/widget/"+widgetId;
+            return $http.get(url);
         }
 
         function updateWidget(widgetId, widget) {
@@ -96,21 +72,8 @@
         }
 
         function deleteWidget(widgetId) {
-            // Delete widget from database whose widget._id matches argument widgetId
-            // Return true if successful
-
-            var widgetFound = false;
-            for (var w in widgets) {
-                var widget = widgets[w];
-                if (widget._id == widgetId) {
-                    widgetFound = true;
-                    widgets.splice(w, 1);
-                    return true;
-                }
-            }
-            if (!widgetFound) {
-                console.log("WidgetService.deleteWidget failed");
-            }
+            var url = "/api/widget/"+widgetId;
+            return $http.delete(url);
         }
 
         function guid() {

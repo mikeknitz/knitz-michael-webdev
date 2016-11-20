@@ -1,102 +1,102 @@
 <!-- Split Header for Wider Devices----------------------------------------- -->
 <div class="hidden-xs">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="row">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row">
 
-            <div class="col-xs-4 container-fluid">
-                <div class="navbar-brand">
-                    <!--Back button-->
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link"><span
-                            class="glyphicon glyphicon-chevron-left"></span></a>
-                    <a class="navbar-link">Pages</a>
-                </div>
-                <p class="navbar-text pull-right">
-                    <!--New page button-->
-                    <a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new"><span
-                            class="glyphicon glyphicon-plus"></span></a>
-                </p>
-            </div>
-
-            <div class="col-xs-8 container-fluid">
-                <div class="navbar-brand">
-                    <a class="navbar-link">Edit Page</a>
-                </div>
-                <p class="navbar-text pull-right">
-                    <!--Update page button-->
-                    <a ng-click="model.updatePage(model.page.name, model.page.description)" class="navbar-link"><span
-                            class="glyphicon glyphicon-ok"></span></a>
-                </p>
-            </div>
-
+      <div class="col-xs-4 container-fluid">
+        <div class="navbar-brand">
+          <!--Back button-->
+          <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link"><span
+              class="glyphicon glyphicon-chevron-left"></span></a>
+          <a class="navbar-link">Pages</a>
         </div>
-    </nav>
+        <p class="navbar-text pull-right">
+          <!--New page button-->
+          <a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new"><span
+              class="glyphicon glyphicon-plus"></span></a>
+        </p>
+      </div>
+
+      <div class="col-xs-8 container-fluid">
+        <div class="navbar-brand">
+          <a class="navbar-link">Edit Page</a>
+        </div>
+        <p class="navbar-text pull-right">
+          <!--Update page button-->
+          <a ng-click="model.updatePage()" class="navbar-link"><span
+              class="glyphicon glyphicon-ok"></span></a>
+        </p>
+      </div>
+
+    </div>
+  </nav>
 </div>
 
 <!-- Non-Split Header for Smaller Devices----------------------------------- -->
 <div class="visible-xs">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-brand">
-                <!--Back button-->
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link"><span
-                        class="glyphicon glyphicon-chevron-left"></span></a>
-                <a class="navbar-link">Edit Page</a>
-            </div>
-            <p class="navbar-text pull-right">
-                <!--Update page button-->
-                <a ng-click="model.updatePage(model.page.name, model.page.description)" class="navbar-link"><span
-                        class="glyphicon glyphicon-ok"></span></a>
-            </p>
-        </div>
-    </nav>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <!--Back button-->
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link"><span
+            class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="navbar-link">Edit Page</a>
+      </div>
+      <p class="navbar-text pull-right">
+        <!--Update page button-->
+        <a ng-click="model.updatePage()" class="navbar-link"><span
+            class="glyphicon glyphicon-ok"></span></a>
+      </p>
+    </div>
+  </nav>
 </div>
 <!-- ----------------------------------------------------------------------- -->
 
 <div class="container-fluid">
-    <div class="hidden-xs vert_line"></div>
+  <div class="hidden-xs vert_line"></div>
 
 
-    <div class="row">
-        <div class="hidden-xs col-xs-4">
-            <div class="container-fluid padding">
-                <div ng-repeat="page in model.pages" class="padding-vert">
-                    <!-- name of page goes to link to widget-list-->
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
-                    <!-- cog goes to link to edit page-->
-                    <a class="pull-right"
-                       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}"><span
-                            class="glyphicon glyphicon-cog"></span></a><br>
-                </div>
-            </div>
+  <div class="row">
+    <div class="hidden-xs col-xs-4">
+      <div class="container-fluid padding">
+        <div ng-repeat="page in model.pages" class="padding-vert">
+          <!-- name of page goes to link to widget-list-->
+          <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+          <!-- cog goes to link to edit page-->
+          <a class="pull-right"
+             href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}"><span
+              class="glyphicon glyphicon-cog"></span></a><br>
         </div>
-
-        <div class="col-xs-12 col-sm-8 padding">
-            <!--Page name-->
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input ng-model="model.page.name" type="text" class="form-control" id="name" placeholder="Name">
-            </div>
-            <!--Page description-->
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea ng-model="model.page.description" type="text" class="form-control" id="description"
-                          placeholder="Description" rows="5"></textarea>
-            </div>
-            <!--Implement deletePage-->
-            <a ng-click="model.deletePage(model.pageId)" class="btn btn-danger btn-block">Delete</a>
-        </div>
-
+      </div>
     </div>
+
+    <div class="col-xs-12 col-sm-8 padding">
+      <!--Page name-->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input ng-model="model.page.name" type="text" class="form-control" id="name" placeholder="Name">
+      </div>
+      <!--Page description-->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea ng-model="model.page.description" type="text" class="form-control" id="description"
+                  placeholder="Description" rows="5"></textarea>
+      </div>
+      <!--Implement deletePage-->
+      <a ng-click="model.deletePage()" class="btn btn-danger btn-block">Delete</a>
+    </div>
+
+  </div>
 
 
 </div>
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-text pull-right">
-            <!--Go to profile-->
-            <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
-        </div>
+  <div class="container-fluid">
+    <div class="navbar-text pull-right">
+      <!--Go to profile-->
+      <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
     </div>
+  </div>
 </nav>

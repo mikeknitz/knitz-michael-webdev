@@ -1,53 +1,56 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-6 navbar-header">
-                <div class="navbar-brand">
-                    <!--Back button to page list-->
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link"><span
-                            class="glyphicon glyphicon-chevron-left"></span></a>
-                    <a class="navbar-link">Widgets</a>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <p class="navbar-text pull-right">
-                    <!--Go to widget-choose to choose a widget to add-->
-                    <a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"><span
-                            class="glyphicon glyphicon-plus"></span></a>
-                </p>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-6 navbar-header">
+        <div class="navbar-brand">
+          <!--Back button to page list-->
+          <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link"><span
+              class="glyphicon glyphicon-chevron-left"></span></a>
+          <a class="navbar-link">Widgets</a>
         </div>
+      </div>
+      <div class="col-xs-6">
+        <p class="navbar-text pull-right">
+          <!--Go to widget-choose to choose a widget to add-->
+          <a class="navbar-link"
+             href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"><span
+              class="glyphicon glyphicon-plus"></span></a>
+        </p>
+      </div>
     </div>
+  </div>
 </nav>
 
 
 <div class="container-fluid padding">
 
-    <div ng-repeat="widget in model.widgets" class="padding-vert-more">
-        <span class="glyphicon glyphicon-align-justify pull-right"></span>
-        <!--Go to widget-edit-->
-        <a class="pull-right" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
-        <h1 class="inline">{{widget.widgetType}}</h1>
-    </div>
+  <div ng-repeat="widget in model.widgets" class="padding-vert-more">
+    <span class="glyphicon glyphicon-align-justify pull-right"></span>
+    <!--Go to widget-edit-->
+    <a class="pull-right"
+       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"><span
+        class="glyphicon glyphicon-cog"></span></a>
+    <h1 class="inline">{{widget.widgetType}}</h1>
+  </div>
 
 
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="navbar-text">
-                    <span class="glyphicon glyphicon-play"></span>
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <!--Go to profile-->
-                <div class="navbar-text pull-right">
-                    <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
-                </div>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="navbar-text">
+          <span class="glyphicon glyphicon-play"></span>
+          <span class="glyphicon glyphicon-eye-open"></span>
         </div>
+      </div>
+      <div class="col-xs-6">
+        <!--Go to profile-->
+        <div class="navbar-text pull-right">
+          <a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
+        </div>
+      </div>
     </div>
+  </div>
 </nav>
