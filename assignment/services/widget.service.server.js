@@ -28,6 +28,7 @@ module.exports = function(app) {
     app.post("/api/page/:pid/widget", createWidget);
     app.delete("/api/widget/:wid", deleteWidget);
     app.get("/api/widget/:wid", findWidgetById);
+    app.put("/api/widget/:wid", updateWidget);
 
     function findWidgetsByPageId(req, res) {
         // Receive pageId
@@ -78,6 +79,23 @@ module.exports = function(app) {
             var widget = widgets[w];
             if (widget._id === widgetId) {
                 res.send(widget);
+            }
+        }
+    }
+
+    function updateWidget(req, res) {
+        // Receive updatedWidget object
+        // Merge properties into db object
+        // Return updated object
+        var widget_updated = req.body;
+        // node.extend
+        var extend = require("node.extend");
+
+        for (var w in widgets) {
+            var widget_db = widgets[w];
+            if (widget_db._id === widget_updated._id) {
+                widgets[w] = extend(true, widgets[w], widget_updated);
+                res.send(widgets[w]);
             }
         }
     }

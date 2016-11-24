@@ -44,41 +44,49 @@
             // Attr's aren't complete, they just merge with database
             vm.updateWidget = updateWidget;
             function updateWidget() {
-                if (vm.widget.widgetType == "HEADER") {
+                if (vm.widget.widgetType === "HEADER") {
                     var updatedWidget = {
                         pageId: vm.pageID,
                         name: vm.widget.name,
                         text: vm.widget.text,
                         size: vm.widget.size,
-                        widgetType: "HEADER"
+                        widgetType: "HEADER",
+                        _id: vm.widgetId
                     };
                 }
-                else if (vm.widget.widgetType == "IMAGE") {
+                else if (vm.widget.widgetType === "IMAGE") {
                     var updatedWidget = {
                         pageId: vm.pageID,
                         name: vm.widget.name,
                         text: vm.widget.text,
                         url: vm.widget.url,
                         width: vm.widget.width,
-                        widgetType: "IMAGE"
+                        widgetType: "IMAGE",
+                        _id: vm.widgetId
                     };
                 }
-                else if (vm.widget.widgetType == "YOUTUBE") {
+                else if (vm.widget.widgetType === "YOUTUBE") {
                     var updatedWidget = {
                         pageId: vm.pageID,
                         name: vm.widget.name,
                         text: vm.widget.text,
                         url: vm.widget.url,
                         width: vm.widget.width,
-                        widgetType: "YOUTUBE"
+                        widgetType: "YOUTUBE",
+                        _id: vm.widgetId
                     };
                 }
 
-                console.log(updatedWidget)
-                WidgetService.updateWidget(vm.widgetId, updatedWidget);
-                // Go back to widget list
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId
-                    + "/page/" + vm.pageId + "/widget")
+                // Update widget
+                // Navigate back to widget list
+                WidgetService.updateWidget(updatedWidget)
+                    .success(function(widget_updated){
+                        console.log("Updated. New Widget:");
+                        console.log(widget_updated);
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId
+                            + "/page/" + vm.pageId + "/widget");
+                    })
+                    .error(function(){});
 
             }
 

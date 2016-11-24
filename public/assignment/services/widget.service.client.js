@@ -54,21 +54,10 @@
             return $http.get(url);
         }
 
-        function updateWidget(widgetId, widget) {
-            // Merge argument widget into database widget
-
-            var widgetFound = false;
-            for (var w in widgets) {
-                var widget_old = widgets[w];
-                if (widget_old._id == widgetId) {
-                    widgetFound = true;
-                    $.extend(true, widgets[w], widget);
-                    return widgets[w];
-                }
-            }
-            if (!widgetFound) {
-                console.log("WidgetService.updateWidget failed");
-            }
+        function updateWidget(updatedWidget) {
+            var widgetId = updatedWidget._id;
+            var url = "/api/widget/" + widgetId;
+            return $http.put(url, updatedWidget);
         }
 
         function deleteWidget(widgetId) {
