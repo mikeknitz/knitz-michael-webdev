@@ -8,20 +8,53 @@
 
     function jgaSortable() {
 
-        function init() {
 
-            $("jga-sortable")
-                .sortable({
-                    axis: "y"
-                });
 
-        }
-        init();
+            function linker(scope, element, attrs) {
 
-        var directive = {
-            jgaSortable: jgaSortable
-        };
-        return directive;
+                var start = null;
+                var end = null;
+
+                element
+                    .sortable({
+                        axis: "y",
+                        start: function (event, ui) {
+                            start = $(ui.item).index();
+                        },
+                        end: function (event, ui) {
+                            end = $(ui.item).index();
+                            scope.sortController.sort(start, end);
+                        }
+
+                    });
+
+            }
+
+
+            var directive = {
+                scope: {},
+                link: linker,
+                controller: sortController,
+                controllerAs: "sortController"
+            };
+            return directive;
+
+
+
+            function sortController(WidgetService, $routeParams) {
+                var vm = this;
+                vm.sort = sort;
+                vm.pageId = $routeParams.pid;
+
+                var sort = function(start, end) {
+                    WidgetService.sort(start, end, vm.PageId)
+                        .success(function(){
+                        })
+                        .error(function(){});
+                }
+
+            }
+
 
     }
 

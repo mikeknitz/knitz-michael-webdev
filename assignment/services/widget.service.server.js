@@ -29,6 +29,7 @@ module.exports = function(app) {
     app.delete("/api/widget/:wid", deleteWidget);
     app.get("/api/widget/:wid", findWidgetById);
     app.put("/api/widget/:wid", updateWidget);
+    app.put("/api/page/:pid/widget", sortWidgets);
 
     function findWidgetsByPageId(req, res) {
         // Receive pageId
@@ -98,6 +99,17 @@ module.exports = function(app) {
                 res.send(widgets[w]);
             }
         }
+    }
+
+    function sortWidgets(req, res) {
+        // Receive pageId and starting and final index for a widget within a page
+        // Update the index of the widget
+        var pageId = req.params.pid;
+        var start = req.query.initial;
+        var final = req.query.final;
+
+        // TODO: use widget model stuff to reorder here
+
     }
 
     function guid() {
