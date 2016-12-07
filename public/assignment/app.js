@@ -1,4 +1,4 @@
 (function () {
     "use strict";
-    angular.module("WebAppMaker", ["ngRoute"])
+    angular.module("WebAppMaker", ["ngRoute", "jgaDirectives"])
 })();

@@ -24,15 +24,19 @@
 
 <div class="container-fluid padding">
 
-  <div ng-repeat="widget in model.widgets" class="padding-vert-more">
-    <span class="glyphicon glyphicon-align-justify pull-right"></span>
-    <!--Go to widget-edit-->
-    <a class="pull-right"
-       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"><span
-        class="glyphicon glyphicon-cog"></span></a>
-    <h1 class="inline">{{widget.widgetType}}</h1>
-  </div>
+  <!--Make each widget sortable-->
+  <jga-sortable>
 
+    <div ng-repeat="widget in model.widgets" class="padding-vert-more">
+      <span class="glyphicon glyphicon-align-justify pull-right"></span>
+      <!--Go to widget-edit-->
+      <a class="pull-right"
+         href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"><span
+          class="glyphicon glyphicon-cog"></span></a>
+      <h1 class="inline">{{widget.widgetType}}</h1>
+    </div>
+
+  </jga-sortable>
 
 </div>
 

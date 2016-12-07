@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="WebAppMaker">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>WebApp Maker</title>
+  <title>WebApp Maker</title>
 
-    <!-- Bootstrap core CSS -->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="../bootstrap.css">
+  <!-- Bootstrap core CSS -->
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="../bootstrap.css">
 
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet">
 
-    <!-- jQuery and Angular CDNs -->
-    <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
-    <script src="../jquery-1.12.4.js"></script>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>-->
-    <script src="../angular.js"></script>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>-->
-    <script src="../angular-route.js"></script>
+  <!-- jQuery and Angular CDNs -->
+  <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet">-->
+  <link href="../jquery-ui.css" rel="stylesheet">
+  <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
+  <script src="../jquery-1.12.4.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>-->
+  <script src="../jquery-ui.js"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>-->
+  <script src="../angular.js"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>-->
+  <script src="../angular-route.js"></script>
 
-    <!-- Angular source files -->
-    <script src="app.js"></script>
-    <script src="config.js"></script>
-    <!-- Angular services -->
-    <script src="services/user.service.client.js"></script>
-    <script src="services/website.service.client.js"></script>
-    <script src="services/page.service.client.js"></script>
-    <script src="services/widget.service.client.js"></script>
-    <!-- views/user controllers -->
-    <script src="views/user/login.controller.client.js"></script>
-    <script src="views/user/profile.controller.client.js"></script>
-    <script src="views/user/register.controller.client.js"></script>
-    <!-- views/page controllers -->
-    <script src="views/page/page-edit.controller.client.js"></script>
-    <script src="views/page/page-list.controller.client.js"></script>
-    <script src="views/page/page-new.controller.client.js"></script>
-    <!-- views/website controllers -->
-    <script src="views/website/website-edit.controller.client.js"></script>
-    <script src="views/website/website-list.controller.client.js"></script>
-    <script src="views/website/website-new.controller.client.js"></script>
-    <!-- views/widget controllers -->
-    <script src="views/widget/widget-edit.controller.client.js"></script>
-    <script src="views/widget/widget-list.controller.client.js"></script>
-    <script src="views/widget/widget-new.controller.client.js"></script>
+  <!-- Angular source files -->
+  <script src="app.js"></script>
+  <script src="config.js"></script>
+  <!--Angular directives-->
+  <script src="directives/jga-directives.js"></script>
+  <!-- Angular services -->
+  <script src="services/user.service.client.js"></script>
+  <script src="services/website.service.client.js"></script>
+  <script src="services/page.service.client.js"></script>
+  <script src="services/widget.service.client.js"></script>
+
+
+
+
+  <!-- views/user controllers -->
+  <script src="views/user/login.controller.client.js"></script>
+  <script src="views/user/profile.controller.client.js"></script>
+  <script src="views/user/register.controller.client.js"></script>
+  <!-- views/page controllers -->
+  <script src="views/page/page-edit.controller.client.js"></script>
+  <script src="views/page/page-list.controller.client.js"></script>
+  <script src="views/page/page-new.controller.client.js"></script>
+  <!-- views/website controllers -->
+  <script src="views/website/website-edit.controller.client.js"></script>
+  <script src="views/website/website-list.controller.client.js"></script>
+  <script src="views/website/website-new.controller.client.js"></script>
+  <!-- views/widget controllers -->
+  <script src="views/widget/widget-edit.controller.client.js"></script>
+  <script src="views/widget/widget-list.controller.client.js"></script>
+  <script src="views/widget/widget-new.controller.client.js"></script>
 </head>
 <body>
 <div ng-view></div>
