@@ -1,5 +1,8 @@
 module.exports = function(app) {
 
+    var multer = require('multer');
+    var upload = multer( { dest: __dirname + '/../../public/uploads' } );
+
     // Hard-coded widget list --> Use MongoDB later
     var widgets = [
         {"_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -30,6 +33,8 @@ module.exports = function(app) {
     app.get("/api/widget/:wid", findWidgetById);
     app.put("/api/widget/:wid", updateWidget);
     app.put("/api/page/:pid/widget", sortWidgets);
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
+
 
     function findWidgetsByPageId(req, res) {
         // Receive pageId
@@ -109,6 +114,34 @@ module.exports = function(app) {
         var final = req.query.final;
 
         // TODO: use widget model stuff to reorder here
+
+    }
+
+    function uploadImage(req, res) {
+
+        var widgetId     = req.body.widgetId;
+        console.log(widgetId);
+        var width        = req.body.width;
+        var myFile       = req.file;
+
+        var originalname = myFile.originalname; // file name on user's computer
+        var filename     = myFile.filename;     // new file name in upload folder
+        var path         = myFile.path;         // full path of uploaded file
+        var destination  = myFile.destination;  // folder where file is saved to
+        var size         = myFile.size;
+        var mimetype     = myFile.mimetype;
+
+
+        // Find widget and put the path as an attribute
+        for (var w in widgets) {
+            var widget = widgets[w];
+            if (widget._id === widgetId) {
+                widgets[w].path = path;
+                console.log(path);
+            }
+        }
+
+        res.send("1");
 
     }
 

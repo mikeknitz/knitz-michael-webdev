@@ -19,6 +19,10 @@
                     console.log("Editing widget:");
                     console.log(widget);
                     vm.widget = widget;
+                    vm.currentImage = widget.path + ".jpg";
+                    if (! widget.path) {
+                        vm.currentImage = "http://i.imgur.com/0lQP3wW.png";
+                    }
                 })
                 .error(function(){});
 
